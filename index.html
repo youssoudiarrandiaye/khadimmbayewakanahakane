@@ -1,1 +1,1360 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cabinet Wa Kana Hakane — Serigne Khadim | Dakar Yeumbeul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500;9..600&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   VARIABLES
+===================================================== */
+:root {
+  --v1: #0f2d13;   /* vert très foncé */
+  --v2: #1e5c26;   /* vert moyen     */
+  --v3: #3a9142;   /* vert vif       */
+  --v4: #d4edda;   /* vert très pâle */
+  --or: #c8920a;   /* or foncé       */
+  --or2:#f0c040;   /* or clair       */
+  --or3:#fff8e1;   /* or très pâle   */
+  --cr: #faf8f2;   /* crème          */
+  --tx: #181a18;   /* texte          */
+  --t2: #4a5249;   /* texte doux     */
+  --bl: #ffffff;
+  --r:  12px;
+  --r2: 20px;
+  --sh: 0 4px 24px rgba(0,0,0,.1);
+  --tr: .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cr);color:var(--tx);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;outline:none;}
+ul{list-style:none;}
+::selection{background:var(--or2);color:var(--v1);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--v2);border-radius:3px;}
+
+/* =====================================================
+   MOTIF AFRICAIN (SVG inline background)
+===================================================== */
+.af-pattern{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpolygon points='24,2 46,13 46,35 24,46 2,35 2,13' fill='none' stroke='%233a9142' stroke-width='.4' opacity='.15'/%3E%3Ccircle cx='24' cy='24' r='3' fill='none' stroke='%23c8920a' stroke-width='.4' opacity='.15'/%3E%3C/svg%3E");
+}
+
+/* =====================================================
+   BARRE PROGRESSION
+===================================================== */
+#prog{
+  position:fixed;top:0;left:0;height:3px;width:0;
+  background:linear-gradient(90deg,var(--v3),var(--or2));
+  z-index:9999;transition:width .1s linear;
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:18px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background var(--tr),padding var(--tr),box-shadow var(--tr);
+}
+nav.on{
+  background:rgba(15,45,19,.96);
+  backdrop-filter:blur(14px);
+  padding:11px 48px;
+  box-shadow:0 2px 24px rgba(0,0,0,.25);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:700;
+  color:var(--or2);line-height:1.15;
+}
+.nav-logo small{display:block;font-size:.6rem;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);font-family:'DM Sans',sans-serif;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.85rem;font-weight:500;letter-spacing:.03em;padding-bottom:3px;position:relative;transition:color var(--tr);}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--or2);border-radius:2px;transition:width var(--tr);}
+.nav-links a:hover{color:var(--or2);}
+.nav-links a:hover::after{width:100%;}
+.nav-cart{
+  background:var(--or);color:var(--v1);
+  padding:9px 20px;border-radius:30px;
+  font-size:.82rem;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+  transition:background var(--tr),transform var(--tr);
+  cursor:pointer;
+}
+.nav-cart:hover{background:var(--or2);transform:translateY(-1px);}
+#cart-badge{
+  background:var(--v1);color:var(--or2);
+  width:20px;height:20px;border-radius:50%;
+  font-size:.68rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  min-width:20px;
+}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hbg span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all var(--tr);}
+
+/* Menu mobile */
+.mob-menu{
+  display:none;position:fixed;inset:0;
+  background:rgba(15,45,19,.98);
+  z-index:998;flex-direction:column;
+  align-items:center;justify-content:center;gap:28px;
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{color:#fff;font-size:1.6rem;font-family:'Cormorant Garamond',serif;font-weight:600;transition:color var(--tr);}
+.mob-menu a:hover{color:var(--or2);}
+.mob-close{position:absolute;top:22px;right:26px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(140deg,var(--v1) 0%,#0a1f0c 45%,#163820 100%);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:110px 80px 80px;
+  position:relative;overflow:hidden;
+  gap:60px;
+}
+/* Cercles déco */
+.hero::before{
+  content:'';position:absolute;top:-180px;right:-180px;
+  width:560px;height:560px;
+  background:radial-gradient(circle,rgba(200,146,10,.13) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-180px;left:-100px;
+  width:480px;height:480px;
+  background:radial-gradient(circle,rgba(58,145,66,.1) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+/* Motif hero */
+.hero-bg-motif{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70'%3E%3Cpath d='M0 35 Q17.5 17.5 35 35 Q52.5 52.5 70 35' fill='none' stroke='%233a9142' stroke-width='.4' opacity='.1'/%3E%3Cpath d='M0 35 Q17.5 52.5 35 35 Q52.5 17.5 70 35' fill='none' stroke='%23c8920a' stroke-width='.4' opacity='.07'/%3E%3C/svg%3E");
+}
+.hero-content{position:relative;z-index:1;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,146,10,.15);border:1px solid rgba(200,146,10,.35);
+  color:var(--or2);padding:6px 16px;border-radius:30px;
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem,4.5vw,4.2rem);
+  font-weight:700;color:#fff;line-height:1.1;margin-bottom:18px;
+}
+.hero h1 em{font-style:italic;color:var(--or2);display:block;}
+.hero p{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.8;max-width:480px;margin-bottom:32px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-or{
+  background:linear-gradient(135deg,var(--or),var(--or2));
+  color:var(--v1);padding:13px 30px;border-radius:40px;
+  font-size:.9rem;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform var(--tr),box-shadow var(--tr);
+  box-shadow:0 4px 20px rgba(200,146,10,.4);
+}
+.btn-or:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(200,146,10,.5);}
+.btn-ghost{
+  background:transparent;color:#fff;
+  border:2px solid rgba(255,255,255,.3);
+  padding:13px 30px;border-radius:40px;
+  font-size:.9rem;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all var(--tr);
+}
+.btn-ghost:hover{border-color:var(--or2);color:var(--or2);transform:translateY(-3px);}
+.hero-stats{
+  display:flex;gap:36px;margin-top:44px;
+  padding-top:28px;border-top:1px solid rgba(255,255,255,.1);
+}
+.stat span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:var(--or2);display:block;
+}
+.stat small{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;}
+
+/* Image hero */
+.hero-img-col{position:relative;z-index:1;display:flex;justify-content:center;}
+.hero-frame{
+  position:relative;width:360px;height:460px;
+}
+.hero-frame::before{
+  content:'';position:absolute;
+  top:-14px;left:-14px;right:14px;bottom:14px;
+  border:2px solid rgba(200,146,10,.4);
+  border-radius:var(--r2);
+}
+.hero-frame::after{
+  content:'';position:absolute;inset:0;
+  border-radius:var(--r2);
+  background:linear-gradient(180deg,transparent 55%,rgba(15,45,19,.9) 100%);
+  z-index:1;
+}
+.hero-photo{
+  width:100%;height:100%;object-fit:cover;
+  object-position:center top;
+  border-radius:var(--r2);display:block;
+}
+/* Placeholder si pas d'image */
+.hero-photo-ph{
+  width:100%;height:100%;
+  background:linear-gradient(135deg,rgba(30,92,38,.6),rgba(15,45,19,.8));
+  border-radius:var(--r2);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  border:2px dashed rgba(200,146,10,.3);
+  color:rgba(255,255,255,.4);font-size:.82rem;gap:10px;text-align:center;
+}
+.hero-lbl{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  z-index:2;background:var(--or);color:var(--v1);
+  padding:7px 18px;border-radius:30px;
+  font-size:.76rem;font-weight:700;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);letter-spacing:.04em;
+}
+/* Orbite */
+.orbit{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:440px;height:540px;
+  border:1px solid rgba(200,146,10,.12);
+  border-radius:50%;
+  animation:spin 22s linear infinite;
+}
+.orbit-dot{
+  position:absolute;top:-5px;left:50%;transform:translateX(-50%);
+  width:10px;height:10px;background:var(--or2);border-radius:50%;
+  box-shadow:0 0 12px var(--or2);
+}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+/* =====================================================
+   SECTIONS — BASE
+===================================================== */
+section{padding:96px 80px;position:relative;}
+.s-tag{
+  display:inline-block;font-size:.7rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--v2);background:var(--v4);
+  padding:5px 14px;border-radius:30px;margin-bottom:12px;
+}
+.s-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.9rem,3.5vw,3rem);
+  font-weight:700;color:var(--v1);line-height:1.2;margin-bottom:14px;
+}
+.s-title em{font-style:italic;color:var(--or);}
+.s-sep{width:52px;height:3px;background:linear-gradient(90deg,var(--v3),var(--or));border-radius:2px;margin:0 auto 18px;}
+.s-sep.left{margin:0 0 18px;}
+.s-sub{font-size:.98rem;color:var(--t2);max-width:580px;margin:0 auto;line-height:1.85;}
+.s-header{text-align:center;margin-bottom:60px;}
+
+/* =====================================================
+   À PROPOS
+===================================================== */
+#apropos{background:#fff;}
+.ap-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:72px;align-items:center;max-width:1160px;margin:0 auto;
+}
+.ap-photo-wrap{position:relative;max-width:400px;margin:0 auto;}
+.ap-photo-wrap::before{
+  content:'';position:absolute;
+  top:18px;left:18px;right:-18px;bottom:-18px;
+  background:var(--v4);border-radius:var(--r2);z-index:0;
+}
+.ap-photo-inner{
+  position:relative;z-index:1;
+  aspect-ratio:3/4;border-radius:var(--r2);
+  background:linear-gradient(135deg,var(--v4),var(--or3));
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border:2px dashed rgba(200,146,10,.3);
+}
+.ap-photo-inner img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.ap-photo-inner .ph{color:var(--t2);font-size:.82rem;text-align:center;padding:20px;}
+.ap-since{
+  position:absolute;bottom:-18px;right:-18px;z-index:2;
+  background:linear-gradient(135deg,var(--v1),var(--v2));
+  color:var(--or2);padding:18px 22px;border-radius:var(--r);
+  text-align:center;box-shadow:var(--sh);
+}
+.ap-since strong{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;display:block;line-height:1;}
+.ap-since small{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;opacity:.8;}
+.ap-content .s-title,.ap-content .s-tag,.ap-content .s-sep{text-align:left;}
+.ap-lead{font-size:1rem;color:var(--t2);line-height:1.85;margin-bottom:26px;}
+.ap-feats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;}
+.feat{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px;background:var(--v4);border-radius:var(--r);
+  transition:transform var(--tr),box-shadow var(--tr);
+}
+.feat:hover{transform:translateY(-2px);box-shadow:var(--sh);}
+.feat-ic{
+  width:34px;height:34px;min-width:34px;
+  background:linear-gradient(135deg,var(--v2),var(--v3));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.feat-t strong{display:block;font-size:.84rem;font-weight:600;color:var(--v1);margin-bottom:2px;}
+.feat-t span{font-size:.75rem;color:var(--t2);line-height:1.4;}
+
+/* =====================================================
+   AVANTAGES (bande sombre)
+===================================================== */
+#avantages{
+  background:linear-gradient(135deg,var(--v1) 0%,#071a09 100%);
+  padding:72px 80px;position:relative;overflow:hidden;
+}
+#avantages .af-pattern{position:absolute;inset:0;pointer-events:none;opacity:.5;}
+.av-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;max-width:1160px;margin:0 auto;position:relative;z-index:1;
+}
+.av-card{
+  text-align:center;padding:32px 20px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r2);
+  background:rgba(255,255,255,.03);
+  transition:transform var(--tr),background var(--tr);
+}
+.av-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.07);}
+.av-ic{
+  width:60px;height:60px;
+  background:linear-gradient(135deg,var(--or),var(--or2));
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;margin:0 auto 18px;
+  box-shadow:0 6px 20px rgba(200,146,10,.3);
+}
+.av-card h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--or2);margin-bottom:8px;}
+.av-card p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.7;}
+
+/* =====================================================
+   BOUTIQUE
+===================================================== */
+#boutique{background:var(--cr);}
+.shop-inner{max-width:1160px;margin:0 auto;}
+.prod-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+/* Pagination */
+#pag-wrap{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;margin-top:48px;
+}
+.pag-btn{
+  background:var(--v4);color:var(--v1);
+  border:1.5px solid rgba(30,92,38,.2);
+  padding:9px 20px;border-radius:30px;
+  font-size:.83rem;font-weight:600;cursor:pointer;
+  transition:all var(--tr);
+}
+.pag-btn:hover:not(:disabled){background:var(--v2);color:#fff;border-color:var(--v2);}
+.pag-btn:disabled{opacity:.35;cursor:not-allowed;}
+#pag-nums{display:flex;gap:7px;}
+.pag-n{
+  width:34px;height:34px;border-radius:50%;
+  border:1.5px solid rgba(30,92,38,.25);
+  background:#fff;color:var(--v1);
+  font-size:.83rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--tr);
+}
+.pag-n:hover{background:var(--v4);}
+.pag-n.act{background:var(--v2);color:#fff;border-color:var(--v2);}
+
+/* Fiche produit */
+.prod-card{
+  background:#fff;border-radius:var(--r2);
+  overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);
+  display:flex;flex-direction:column;
+  transition:transform var(--tr),box-shadow var(--tr);
+  position:relative;
+}
+.prod-card:hover{transform:translateY(-7px);box-shadow:0 14px 40px rgba(0,0,0,.13);}
+.prod-badge{
+  position:absolute;top:12px;left:12px;z-index:2;
+  background:var(--or);color:var(--v1);
+  font-size:.66rem;font-weight:700;
+  padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.06em;
+}
+.prod-img-box{
+  height:210px;overflow:hidden;
+  background:linear-gradient(135deg,var(--v4),var(--or3));
+  position:relative;display:flex;align-items:center;justify-content:center;
+}
+.prod-img-box img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .55s ease;
+}
+.prod-card:hover .prod-img-box img{transform:scale(1.07);}
+.prod-emoji{font-size:4.5rem;filter:drop-shadow(0 4px 10px rgba(0,0,0,.1));}
+.prod-body{padding:22px;flex:1;display:flex;flex-direction:column;}
+.prod-cat{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--v2);margin-bottom:5px;}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:700;color:var(--v1);margin-bottom:9px;line-height:1.3;}
+.prod-desc{font-size:.84rem;color:var(--t2);line-height:1.72;margin-bottom:14px;flex:1;}
+.prod-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
+.tag{background:var(--v4);color:var(--v2);font-size:.67rem;font-weight:600;padding:3px 9px;border-radius:20px;}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
+.prod-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--or);}
+.prod-price sup{font-size:.65em;vertical-align:super;font-family:'DM Sans',sans-serif;}
+.btn-add{
+  background:linear-gradient(135deg,var(--v2),var(--v3));
+  color:#fff;padding:9px 18px;border-radius:30px;
+  font-size:.82rem;font-weight:600;
+  display:flex;align-items:center;gap:6px;
+  transition:all var(--tr);white-space:nowrap;
+}
+.btn-add:hover{background:linear-gradient(135deg,var(--v1),var(--v2));transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,92,38,.4);}
+.btn-add:active{transform:scale(.96);}
+.prod-bio{font-size:.73rem;color:var(--v2);font-weight:500;margin-top:10px;display:flex;align-items:center;gap:5px;}
+.prod-bio::before{content:'🌿';}
+
+/* =====================================================
+   TÉMOIGNAGES
+===================================================== */
+#temoignages{background:#fff;}
+.temo-inner{max-width:1160px;margin:0 auto;}
+.temo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.temo-card{
+  background:var(--cr);border-radius:var(--r2);padding:28px;
+  border:1px solid rgba(0,0,0,.05);
+  transition:transform var(--tr),box-shadow var(--tr);
+}
+.temo-card:hover{transform:translateY(-4px);box-shadow:var(--sh);}
+.gg{font-family:'Cormorant Garamond',serif;font-size:4.5rem;color:var(--or);line-height:.55;display:block;margin-bottom:12px;}
+.temo-prod{display:inline-flex;align-items:center;gap:5px;background:var(--v4);color:var(--v2);font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+.stars{color:var(--or);font-size:.82rem;margin-bottom:10px;}
+.temo-txt{font-size:.9rem;color:var(--t2);line-height:1.8;font-style:italic;margin-bottom:20px;}
+.temo-auth{display:flex;align-items:center;gap:12px;}
+.auth-av{width:44px;height:44px;background:linear-gradient(135deg,var(--v2),var(--v3));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#fff;flex-shrink:0;}
+.auth-name{font-size:.87rem;font-weight:600;color:var(--v1);}
+.auth-city{font-size:.76rem;color:var(--t2);}
+
+/* =====================================================
+   CONTACT
+===================================================== */
+#contact{background:var(--cr);}
+.ct-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;max-width:1080px;margin:0 auto;}
+.ct-info .s-title,.ct-info .s-tag,.ct-info .s-sep{text-align:left;}
+.ct-info > p{font-size:.95rem;color:var(--t2);line-height:1.85;margin-bottom:30px;}
+.ct-items{display:flex;flex-direction:column;gap:13px;}
+.ct-item{display:flex;align-items:center;gap:12px;padding:14px;background:#fff;border-radius:var(--r);border:1px solid rgba(0,0,0,.06);}
+.ct-ic{width:40px;height:40px;background:linear-gradient(135deg,var(--v2),var(--v3));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ct-t strong{display:block;font-size:.83rem;color:var(--v1);margin-bottom:1px;}
+.ct-t span,.ct-t a{font-size:.78rem;color:var(--t2);transition:color var(--tr);}
+.ct-t a:hover{color:var(--v2);}
+.ct-form-wrap{background:#fff;border-radius:var(--r2);padding:36px;box-shadow:var(--sh);border:1px solid rgba(0,0,0,.05);}
+.ct-form-wrap h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--v1);margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:.78rem;font-weight:600;color:var(--tx);margin-bottom:5px;}
+.fg label .req{color:#e53935;margin-left:2px;}
+.fc{
+  width:100%;padding:12px 14px;
+  border:1.5px solid rgba(0,0,0,.12);border-radius:var(--r);
+  font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--tx);
+  background:var(--cr);outline:none;
+  transition:border-color var(--tr),box-shadow var(--tr);
+}
+.fc:focus{border-color:var(--v3);box-shadow:0 0 0 3px rgba(58,145,66,.12);background:#fff;}
+.fc.err{border-color:#e53935;box-shadow:0 0 0 3px rgba(229,57,53,.1);}
+.fc.ok{border-color:var(--v3);}
+textarea.fc{resize:vertical;min-height:112px;}
+.ferr{font-size:.73rem;color:#e53935;margin-top:3px;display:none;}
+.ferr.show{display:block;}
+.btn-send{
+  width:100%;background:linear-gradient(135deg,var(--v1),var(--v2));
+  color:#fff;padding:14px;border-radius:40px;
+  font-size:.95rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:all var(--tr);margin-top:6px;
+}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,45,19,.4);}
+.btn-send:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer{
+  background:var(--v1);color:rgba(255,255,255,.65);
+  padding:60px 80px 28px;
+}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:52px;margin-bottom:44px;}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--or2);display:block;margin-bottom:12px;}
+.ft-desc{font-size:.85rem;line-height:1.82;max-width:260px;margin-bottom:20px;}
+.ft-dots{display:flex;gap:7px;}
+.ft-dot{width:5px;height:5px;background:var(--or);border-radius:50%;}
+.ft-col h5{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--or2);margin-bottom:16px;}
+.ft-links li{margin-bottom:9px;}
+.ft-links a{font-size:.85rem;color:rgba(255,255,255,.55);transition:color var(--tr);}
+.ft-links a:hover{color:var(--or2);}
+.ft-tiktok{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.8);padding:7px 14px;border-radius:30px;
+  font-size:.78rem;font-weight:600;margin-top:16px;
+  transition:all var(--tr);
+}
+.ft-tiktok:hover{background:rgba(255,255,255,.14);color:#fff;}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;}
+
+/* =====================================================
+   PANIER — DRAWER
+===================================================== */
+.cart-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.5);z-index:2000;
+  backdrop-filter:blur(4px);
+}
+.cart-overlay.open{display:block;animation:fIn .25s ease;}
+@keyframes fIn{from{opacity:0}to{opacity:1}}
+.cart-drawer{
+  position:fixed;top:0;right:0;height:100vh;width:420px;max-width:100%;
+  background:#fff;z-index:2001;
+  display:flex;flex-direction:column;
+  box-shadow:-6px 0 40px rgba(0,0,0,.18);
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.cart-drawer.open{transform:translateX(0);}
+.cart-hd{
+  padding:22px 26px;
+  background:linear-gradient(135deg,var(--v1),var(--v2));
+  color:#fff;display:flex;align-items:center;justify-content:space-between;
+}
+.cart-hd h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;}
+.cart-cls{
+  width:32px;height:32px;background:rgba(255,255,255,.15);
+  border:none;border-radius:50%;color:#fff;font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background var(--tr);
+}
+.cart-cls:hover{background:rgba(255,255,255,.28);}
+.cart-body{flex:1;overflow-y:auto;padding:18px 24px;}
+.cart-empty{text-align:center;padding:56px 20px;color:var(--t2);}
+.cart-empty svg{width:56px;height:56px;opacity:.25;margin:0 auto 14px;}
+.cart-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.06);animation:slideR .2s ease;}
+@keyframes slideR{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+.ci-emo{width:52px;height:52px;background:var(--v4);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0;}
+.ci-info{flex:1;}
+.ci-name{font-size:.88rem;font-weight:600;color:var(--v1);margin-bottom:3px;}
+.ci-price{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--or);}
+.ci-qty{display:flex;align-items:center;gap:7px;margin-top:7px;}
+.qb{width:25px;height:25px;background:var(--v4);border:none;border-radius:5px;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--v1);font-weight:700;transition:background var(--tr);}
+.qb:hover{background:var(--v2);color:#fff;}
+.qn{font-size:.88rem;font-weight:600;min-width:18px;text-align:center;}
+.ci-del{background:none;border:none;color:#e53935;cursor:pointer;font-size:1.05rem;padding:3px;opacity:.65;transition:all var(--tr);}
+.ci-del:hover{opacity:1;transform:scale(1.18);}
+.cart-ft{padding:20px 24px;border-top:1px solid rgba(0,0,0,.08);background:var(--cr);}
+.cart-tot-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:.85rem;color:var(--t2);}
+.cart-tot-big{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.cart-tot-big span{font-weight:600;}
+.cart-tot-big strong{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--v1);}
+.btn-order{
+  width:100%;background:linear-gradient(135deg,var(--v1),var(--v2));
+  color:#fff;padding:14px;border-radius:40px;
+  font-size:.95rem;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:all var(--tr);margin-bottom:10px;
+}
+.btn-order:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,45,19,.35);}
+.btn-wa-order{
+  width:100%;background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;padding:12px;border-radius:40px;
+  font-size:.88rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:all var(--tr);
+}
+.btn-wa-order:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,211,102,.35);}
+
+/* =====================================================
+   TOAST NOTIFICATIONS
+===================================================== */
+#toasts{
+  position:fixed;top:76px;right:18px;z-index:3000;
+  display:flex;flex-direction:column;gap:9px;pointer-events:none;
+}
+.toast{
+  background:#fff;border-radius:var(--r);
+  padding:13px 18px;box-shadow:0 6px 28px rgba(0,0,0,.14);
+  display:flex;align-items:center;gap:11px;
+  font-size:.86rem;color:var(--tx);max-width:330px;
+  border-left:4px solid var(--v3);
+  animation:tIn .3s cubic-bezier(.34,1.56,.64,1) forwards, tOut .3s ease 2.9s forwards;
+  pointer-events:auto;
+}
+.toast.info{border-left-color:var(--or);}
+.ti{font-size:1.15rem;}
+.tt strong{display:block;font-weight:600;margin-bottom:1px;}
+.tt span{font-size:.77rem;color:var(--t2);}
+@keyframes tIn{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+@keyframes tOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(100%)}}
+
+/* =====================================================
+   WHATSAPP FLOTTANT
+===================================================== */
+.wa-wrap{position:fixed;bottom:26px;right:26px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:9px;}
+.wa-lbl{background:var(--v1);color:#fff;padding:7px 14px;border-radius:30px;font-size:.76rem;font-weight:600;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.2);animation:fSlide .3s ease;}
+@keyframes fSlide{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+.wa-btn{
+  width:56px;height:56px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 22px rgba(37,211,102,.5);
+  animation:pulse 2.5s infinite;
+  transition:transform var(--tr);
+}
+.wa-btn:hover{transform:scale(1.1);}
+.wa-btn svg{width:26px;height:26px;fill:#fff;}
+@keyframes pulse{0%,100%{box-shadow:0 6px 22px rgba(37,211,102,.5);}50%{box-shadow:0 6px 32px rgba(37,211,102,.75),0 0 0 9px rgba(37,211,102,.08);}}
+
+/* =====================================================
+   REVEAL SCROLL
+===================================================== */
+@keyframes revUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes revLeft{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes revRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+/* Éléments non-produit cachés par défaut */
+.rv:not(.prod-card){opacity:0;}
+.rv.done{animation:revUp .65s ease forwards;}
+.rv.done.rl{animation:revLeft .65s ease forwards;}
+.rv.done.rr{animation:revRight .65s ease forwards;}
+.d1.done{animation-delay:.08s;}
+.d2.done{animation-delay:.17s;}
+.d3.done{animation-delay:.26s;}
+.d4.done{animation-delay:.35s;}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media(max-width:1100px){
+  section{padding:72px 40px;}
+  nav{padding:14px 24px;}
+  nav.on{padding:10px 24px;}
+  .hero{padding:100px 40px 60px;}
+  .av-grid{grid-template-columns:1fr 1fr;}
+  .prod-grid{grid-template-columns:1fr 1fr;}
+  .temo-grid{grid-template-columns:1fr 1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:36px;}
+  #avantages{padding:56px 40px;}
+  footer{padding:48px 40px 24px;}
+}
+@media(max-width:900px){
+  .ap-grid{grid-template-columns:1fr;gap:48px;}
+  .ap-photo-wrap{max-width:340px;}
+  .ct-grid{grid-template-columns:1fr;gap:40px;}
+  .hero{grid-template-columns:1fr;gap:40px;text-align:center;}
+  .hero p{margin-left:auto;}
+  .hero-btns,.hero-stats{justify-content:center;}
+  .hero-img-col{display:none;}
+}
+@media(max-width:700px){
+  .nav-links{display:none;}
+  .hbg{display:flex;}
+  section{padding:56px 18px;}
+  .hero{padding:88px 18px 48px;}
+  .hero h1{font-size:2.3rem;}
+  .av-grid,.prod-grid,.temo-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto;}
+  .ap-feats{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr;gap:28px;}
+  .ft-bottom{flex-direction:column;gap:10px;text-align:center;}
+  footer{padding:36px 18px 20px;}
+  #avantages{padding:44px 18px;}
+  .cart-drawer{width:100%;}
+  .nav-cart span:not(#cart-badge){display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<div id="toasts"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#accueil" class="nav-logo">
+    WAKANAHAKANE
+    <small>Cabinet Wa Kana Hakane · Dakar Yeumbeul</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cart" id="btn-open-cart">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span>Panier</span>
+    <span id="cart-badge">0</span>
+  </button>
+  <div class="hbg" id="hbg"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- Menu mobile -->
+<div class="mob-menu" id="mob-menu">
+  <button class="mob-close" id="mob-close">✕</button>
+  <a href="#accueil"     onclick="closeMob()">Accueil</a>
+  <a href="#apropos"     onclick="closeMob()">À propos</a>
+  <a href="#boutique"    onclick="closeMob()">Boutique</a>
+  <a href="#temoignages" onclick="closeMob()">Témoignages</a>
+  <a href="#contact"     onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="accueil" class="hero">
+  <div class="hero-bg-motif"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">✦ Guérisseur Traditionnel Certifié</div>
+    <h1>
+      La Nature au Service
+      <em>de Votre Guérison</em>
+    </h1>
+    <p>Serigne Khadim perpétue depuis plus de 30 ans les traditions ancestrales africaines avec des remèdes naturels authentiques — pour votre santé, votre vitalité et votre bien-être profond.</p>
+    <div class="hero-btns">
+      <a href="#boutique" class="btn-or">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Découvrir la boutique
+      </a>
+      <a href="#apropos" class="btn-ghost">
+        En savoir plus
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span>30+</span><small>Ans d'expérience</small></div>
+      <div class="stat"><span>5 000+</span><small>Patients guéris</small></div>
+      <div class="stat"><span>100%</span><small>Naturel &amp; Bio</small></div>
+    </div>
+  </div>
+
+  <div class="hero-img-col">
+    <div class="orbit"><div class="orbit-dot"></div></div>
+    <div class="hero-frame">
+      <!--
+        Pour ajouter la photo du guérisseur, remplacez le bloc ci-dessous par :
+        <img class="hero-photo" src="votre-photo.jpg" alt="Serigne Khadim">
+      -->
+      <div class="hero-photo-ph">
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"><circle cx="32" cy="22" r="12"/><path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24"/></svg>
+        <span>Photo de<br>Serigne Khadim</span>
+      </div>
+      <div class="hero-lbl">✦ Maître Guérisseur</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     À PROPOS
+═══════════════════════════════════════════ -->
+<section id="apropos">
+  <div class="ap-grid">
+    <div class="rv rl">
+      <div class="ap-photo-wrap">
+        <div class="ap-photo-inner">
+          <!--
+            Remplacez par : <img src="photo-portrait.jpg" alt="Serigne Khadim">
+          -->
+          <div class="ph">
+            <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#3a9142" stroke-width="1.5" opacity=".4"><circle cx="32" cy="22" r="12"/><path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24"/></svg>
+            <small>Photo du guérisseur</small>
+          </div>
+        </div>
+        <div class="ap-since">
+          <strong>30+</strong>
+          <small>Années de pratique</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="ap-content rv rr">
+      <div class="s-tag">À propos</div>
+      <h2 class="s-title">Un héritage de<br><em>sagesse ancestrale</em></h2>
+      <div class="s-sep left"></div>
+      <p class="ap-lead">Serigne Khadim Wakanahakane est un guérisseur traditionnel de renom, héritier d'une longue lignée de tradipraticiens africains. Formé dès son jeune âge aux secrets des plantes médicinales, il a consacré sa vie à soigner et redonner espoir à des milliers de personnes à Dakar et au-delà.</p>
+      <div class="ap-feats">
+        <div class="feat"><div class="feat-ic">🌿</div><div class="feat-t"><strong>Plantes médicinales</strong><span>Sélectionnées dans la nature africaine</span></div></div>
+        <div class="feat"><div class="feat-ic">⚡</div><div class="feat-t"><strong>Vitalité &amp; énergie</strong><span>Formules éprouvées pour l'organisme</span></div></div>
+        <div class="feat"><div class="feat-ic">🔬</div><div class="feat-t"><strong>Méthodes ancestrales</strong><span>Transmises de génération en génération</span></div></div>
+        <div class="feat"><div class="feat-ic">🛡️</div><div class="feat-t"><strong>Sans effets secondaires</strong><span>100% naturel, testé et approuvé</span></div></div>
+      </div>
+      <a href="#boutique" class="btn-or" style="display:inline-flex;">
+        Voir les produits
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     AVANTAGES
+═══════════════════════════════════════════ -->
+<section id="avantages">
+  <div class="af-pattern" style="position:absolute;inset:0;pointer-events:none;"></div>
+  <div class="av-grid">
+    <div class="av-card rv d1"><div class="av-ic">🌱</div><h4>100% Naturel</h4><p>Tous nos produits sont composés d'ingrédients naturels soigneusement sélectionnés, sans additifs chimiques.</p></div>
+    <div class="av-card rv d2"><div class="av-ic">🚚</div><h4>Livraison Rapide</h4><p>Commandez aujourd'hui, recevez chez vous partout au Sénégal et en Afrique de l'Ouest.</p></div>
+    <div class="av-card rv d3"><div class="av-ic">💬</div><h4>Conseil Gratuit</h4><p>Consultez le maître guérisseur directement via WhatsApp pour un diagnostic personnalisé.</p></div>
+    <div class="av-card rv d4"><div class="av-ic">✅</div><h4>Résultats Prouvés</h4><p>Plus de 5 000 patients satisfaits témoignent de l'efficacité de nos remèdes traditionnels.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BOUTIQUE
+═══════════════════════════════════════════ -->
+<section id="boutique">
+  <div class="shop-inner">
+    <div class="s-header rv">
+      <div class="s-tag">Boutique</div>
+      <h2 class="s-title">Nos <em>Produits Naturels</em></h2>
+      <div class="s-sep"></div>
+      <p class="s-sub">Des remèdes ancestraux formulés avec les meilleures plantes africaines pour votre santé et votre vitalité.</p>
+    </div>
+
+    <div class="prod-grid" id="prod-grid">
+      <!-- Les fiches produit sont injectées par JS -->
+    </div>
+
+    <div id="pag-wrap">
+      <button class="pag-btn" id="pag-prev" onclick="pagChange(-1)">&#8592; Précédent</button>
+      <div id="pag-nums"></div>
+      <button class="pag-btn" id="pag-next" onclick="pagChange(1)">Suivant &#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TÉMOIGNAGES
+═══════════════════════════════════════════ -->
+<section id="temoignages">
+  <div class="temo-inner">
+    <div class="s-header rv">
+      <div class="s-tag">Témoignages</div>
+      <h2 class="s-title">Ce que disent <em>nos patients</em></h2>
+      <div class="s-sep"></div>
+      <p class="s-sub">Des milliers de personnes ont retrouvé santé et vitalité grâce aux remèdes de Serigne Khadim.</p>
+    </div>
+    <div class="temo-grid">
+      <div class="temo-card rv d1">
+        <span class="gg">"</span>
+        <div class="temo-prod">✓ Naan Sey</div>
+        <div class="stars">★★★★★</div>
+        <p class="temo-txt">J'avais des douleurs chroniques depuis des années. Après 3 semaines de traitement avec le Naan Sey, j'ai retrouvé une énergie que je n'avais pas depuis longtemps. Merci infiniment !</p>
+        <div class="temo-auth"><div class="auth-av">M</div><div><div class="auth-name">Mamadou Diallo</div><div class="auth-city">Dakar, Sénégal</div></div></div>
+      </div>
+      <div class="temo-card rv d2">
+        <span class="gg">"</span>
+        <div class="temo-prod">✓ Produit Prostate</div>
+        <div class="stars">★★★★★</div>
+        <p class="temo-txt">Le produit prostate m'a littéralement sauvé. Les médecins me disaient qu'il fallait opérer. En 6 semaines de traitement naturel, tout était rentré dans l'ordre. Incroyable !</p>
+        <div class="temo-auth"><div class="auth-av">I</div><div><div class="auth-name">Ibrahim Sow</div><div class="auth-city">Thiès, Sénégal</div></div></div>
+      </div>
+      <div class="temo-card rv d3">
+        <span class="gg">"</span>
+        <div class="temo-prod">✓ Pommade Bio</div>
+        <div class="stars">★★★★★</div>
+        <p class="temo-txt">Ma femme et moi sommes tellement reconnaissants. La livraison était rapide, le service impeccable et les résultats parlent d'eux-mêmes. Je recommande à tous mes proches.</p>
+        <div class="temo-auth"><div class="auth-av">A</div><div><div class="auth-name">Abdoulaye Ba</div><div class="auth-city">Saint-Louis, Sénégal</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════ -->
+<section id="contact">
+  <div class="ct-grid">
+    <div class="ct-info rv rl">
+      <div class="s-tag">Contact</div>
+      <h2 class="s-title">Prenez <em>contact</em></h2>
+      <div class="s-sep left"></div>
+      <p>Vous avez une question sur nos produits ? Serigne Khadim est disponible pour vous guider vers la meilleure solution naturelle.</p>
+      <div class="ct-items">
+        <div class="ct-item"><div class="ct-ic">📍</div><div class="ct-t"><strong>Localisation</strong><span>Dakar – Yeumbeul, Sénégal</span></div></div>
+        <div class="ct-item"><div class="ct-ic">📱</div><div class="ct-t"><strong>Téléphone / WhatsApp</strong><span>+221 77 044 45 88 / +221 76 519 19 26</span></div></div>
+        <div class="ct-item"><div class="ct-ic">⏰</div><div class="ct-t"><strong>Disponibilité</strong><span>Lun – Sam : 8h00 – 20h00</span></div></div>
+        <div class="ct-item">
+          <div class="ct-ic" style="background:linear-gradient(135deg,#010101,#333);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.73a8.22 8.22 0 004.82 1.55V6.84a4.85 4.85 0 01-1.05-.15z"/></svg>
+          </div>
+          <div class="ct-t"><strong>TikTok</strong><a href="https://www.tiktok.com/@khadimmbayewakanahakane" target="_blank">@khadimmbayewakanahakane</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ct-form-wrap rv rr">
+      <h3>Envoyez un message</h3>
+      <form id="form" novalidate>
+        <div class="form-row">
+          <div class="fg"><label>Prénom <span class="req">*</span></label><input id="f-prenom" class="fc" type="text" placeholder="Votre prénom"><div class="ferr" id="e-prenom">Champ obligatoire</div></div>
+          <div class="fg"><label>Nom <span class="req">*</span></label><input id="f-nom" class="fc" type="text" placeholder="Votre nom"><div class="ferr" id="e-nom">Champ obligatoire</div></div>
+        </div>
+        <div class="fg"><label>Email <span class="req">*</span></label><input id="f-email" class="fc" type="email" placeholder="votre@email.com"><div class="ferr" id="e-email">Email invalide</div></div>
+        <div class="fg"><label>Téléphone</label><input id="f-tel" class="fc" type="tel" placeholder="+221 XX XXX XX XX"></div>
+        <div class="fg">
+          <label>Sujet <span class="req">*</span></label>
+          <select id="f-sujet" class="fc">
+            <option value="">Sélectionnez un sujet</option>
+            <option>Commande / Livraison</option>
+            <option>Consultation médicale</option>
+            <option>Question sur un produit</option>
+            <option>Autre</option>
+          </select>
+          <div class="ferr" id="e-sujet">Veuillez choisir un sujet</div>
+        </div>
+        <div class="fg"><label>Message <span class="req">*</span></label><textarea id="f-msg" class="fc" placeholder="Décrivez votre demande..."></textarea><div class="ferr" id="e-msg">Message trop court (min. 10 caractères)</div></div>
+        <button type="submit" class="btn-send" id="btn-send">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Envoyer le message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <span class="ft-logo">Cabinet Wa Kana Hakane</span>
+      <p class="ft-desc">Guérisseur traditionnel africain de renom. Remèdes naturels authentiques, héritage ancestral, résultats prouvés depuis plus de 30 ans. Dakar – Yeumbeul.</p>
+      <div class="ft-dots"><div class="ft-dot"></div><div class="ft-dot"></div><div class="ft-dot"></div></div>
+      <a href="https://www.tiktok.com/@khadimmbayewakanahakane" target="_blank" class="ft-tiktok">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.73a8.22 8.22 0 004.82 1.55V6.84a4.85 4.85 0 01-1.05-.15z"/></svg>
+        @khadimmbayewakanahakane
+      </a>
+    </div>
+    <div class="ft-col">
+      <h5>Navigation</h5>
+      <ul class="ft-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#boutique">Boutique</a></li>
+        <li><a href="#temoignages">Témoignages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Produits</h5>
+      <ul class="ft-links">
+        <li><a href="#boutique">Naan Sey</a></li>
+        <li><a href="#boutique">Pommade 3ème Pied Bio</a></li>
+        <li><a href="#boutique">Produit Prostate</a></li>
+        <li><a href="#boutique">Traitement Fertilité</a></li>
+        <li><a href="#boutique">Huile Soin Corporel</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2025 Cabinet Wa Kana Hakane · Tous droits réservés</span>
+    <span style="color:rgba(255,255,255,.3);">Dakar – Yeumbeul, Sénégal</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     PANIER DRAWER
+═══════════════════════════════════════════ -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-hd">
+    <h3>Mon Panier</h3>
+    <button class="cart-cls" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty" id="cart-empty">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8L8 16v36a4 4 0 004 4h40a4 4 0 004-4V16l-8-8z"/><line x1="8" y1="16" x2="56" y2="16"/><path d="M40 24a8 8 0 01-16 0"/></svg>
+      <p>Votre panier est vide</p>
+    </div>
+  </div>
+  <div class="cart-ft" id="cart-ft" style="display:none;">
+    <div class="cart-tot-row"><span>Sous-total</span><span id="c-sub">0 F CFA</span></div>
+    <div class="cart-tot-row"><span>Livraison</span><span>Calculée à la commande</span></div>
+    <div class="cart-tot-big"><span>Total</span><strong id="c-tot">0 F CFA</strong></div>
+    <button class="btn-order" onclick="orderConfirm()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Confirmer la commande
+    </button>
+    <button class="btn-wa-order" onclick="orderWA()">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Commander via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     WHATSAPP FLOTTANT
+═══════════════════════════════════════════ -->
+<div class="wa-wrap">
+  <div class="wa-lbl" id="wa-lbl">77 044 45 88 · Consulter</div>
+  <a class="wa-btn" href="https://wa.me/221770444588?text=Bonjour%20Cabinet%20Wa%20Kana%20Hakane%2C%20je%20souhaite%20plus%20d%27informations%20sur%20vos%20produits." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+/* ─── DONNÉES PRODUITS ─── */
+var PRODUITS = [
+  { id:1, nom:'Naan Sey',              prix:25000, cat:'Bien-être général',  emoji:'🌾', badge:'Best-seller',
+    desc:"Préparation ancestrale à base de plantes sacrées sénégalaises. Fortifie le corps, améliore l'énergie vitale et renforce le système immunitaire.",
+    tags:['Plantes sacrées','Racines','Écorces'] },
+  { id:2, nom:'Pommade 3ème Pied Bio', prix:35000, cat:'Vitalité masculine',  emoji:'💚', badge:'Exclusif',
+    desc:"Formule secrète ancestrale à base d'herbes puissantes et d'huiles précieuses. Action rapide et visible. Résultats garantis.",
+    tags:['Huiles naturelles','Herbes rares','Beurre de karité'] },
+  { id:3, nom:'Produit Prostate',      prix:30000, cat:'Santé masculine',    emoji:'🌿', badge:'Nouveau',
+    desc:"Traitement naturel pour les troubles de la prostate. Soulage les douleurs, améliore le flux urinaire et rétablit le confort quotidien.",
+    tags:['Saw Palmetto','Baobab','Plantes africaines'] },
+  { id:4, nom:'Traitement Fertilité',  prix:28000, cat:'Fertilité',          emoji:'🌺', badge:'Populaire',
+    desc:"Préparation spéciale pour renforcer la fertilité masculine et féminine avec des plantes africaines millénaires testées.",
+    tags:['Ginseng africain','Moringa','Racines'] },
+  { id:5, nom:'Huile Soin Corporel',   prix:18000, cat:'Soin du corps',      emoji:'✨', badge:'',
+    desc:"Huile naturelle multi-usages extraite des meilleures plantes. Nourrit la peau, combat les douleurs articulaires et musculaires.",
+    tags:['Huile de baobab','Karité','Argan'] },
+  { id:6, nom:'Tisane Détox Complète', prix:15000, cat:'Détoxification',     emoji:'🍃', badge:'',
+    desc:"Mélange de plantes purifiantes pour détoxifier l'organisme, nettoyer le foie et regagner une vitalité éclatante.",
+    tags:['Feuilles détox','Citron vert','Gingembre'] }
+];
+
+/* ─── PANIER (mémoire) ─── */
+var cart = [];
+
+function cartGet(id) { return cart.find(function(i){ return i.id===id; }); }
+
+function addToCart(id) {
+  var p = PRODUITS.find(function(x){ return x.id===id; });
+  if (!p) return;
+  var ex = cartGet(id);
+  if (ex) { ex.qty++; } else { cart.push({id:id,nom:p.nom,prix:p.prix,emoji:p.emoji,qty:1}); }
+  renderCart();
+  toast('Ajouté !', p.nom + ' ajouté au panier.', '✅', '');
+}
+
+function qtyChange(id, d) {
+  var it = cartGet(id);
+  if (!it) return;
+  it.qty += d;
+  if (it.qty <= 0) cart = cart.filter(function(i){ return i.id!==id; });
+  renderCart();
+}
+
+function removeItem(id) {
+  cart = cart.filter(function(i){ return i.id!==id; });
+  renderCart();
+}
+
+function cartTotal() { return cart.reduce(function(a,i){ return a+i.prix*i.qty; },0); }
+function cartCount() { return cart.reduce(function(a,i){ return a+i.qty; },0); }
+function fmt(n) { return n.toLocaleString('fr-FR')+' F CFA'; }
+
+function renderCart() {
+  var badge = document.getElementById('cart-badge');
+  var body  = document.getElementById('cart-body');
+  var empty = document.getElementById('cart-empty');
+  var ft    = document.getElementById('cart-ft');
+  var sub   = document.getElementById('c-sub');
+  var tot   = document.getElementById('c-tot');
+
+  if (badge) badge.textContent = cartCount();
+  if (!body) return;
+
+  if (cart.length === 0) {
+    body.innerHTML = '';
+    if (empty) { body.appendChild(empty); empty.style.display = 'block'; }
+    if (ft) ft.style.display = 'none';
+    return;
+  }
+
+  if (empty) empty.style.display = 'none';
+  if (ft) ft.style.display = 'block';
+
+  body.innerHTML = '';
+  cart.forEach(function(item) {
+    var d = document.createElement('div');
+    d.className = 'cart-item';
+    d.innerHTML =
+      '<div class="ci-emo">'+item.emoji+'</div>'+
+      '<div class="ci-info">'+
+        '<div class="ci-name">'+item.nom+'</div>'+
+        '<div class="ci-price">'+fmt(item.prix*item.qty)+'</div>'+
+        '<div class="ci-qty">'+
+          '<button class="qb" onclick="qtyChange('+item.id+',-1)">&#8722;</button>'+
+          '<span class="qn">'+item.qty+'</span>'+
+          '<button class="qb" onclick="qtyChange('+item.id+',1)">+</button>'+
+        '</div>'+
+      '</div>'+
+      '<button class="ci-del" onclick="removeItem('+item.id+')" title="Supprimer">&#x2715;</button>';
+    body.appendChild(d);
+  });
+
+  var t = cartTotal();
+  if (sub) sub.textContent = fmt(t);
+  if (tot) tot.textContent = fmt(t);
+}
+
+/* ─── OUVRIR/FERMER PANIER ─── */
+function openCart() {
+  var o = document.getElementById('cart-overlay');
+  var d = document.getElementById('cart-drawer');
+  if (o) o.classList.add('open');
+  if (d) d.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  var o = document.getElementById('cart-overlay');
+  var d = document.getElementById('cart-drawer');
+  if (o) o.classList.remove('open');
+  if (d) d.classList.remove('open');
+  document.body.style.overflow = '';
+}
+var btnC = document.getElementById('btn-open-cart');
+if (btnC) btnC.addEventListener('click', openCart);
+
+/* ─── COMMANDER ─── */
+function orderConfirm() {
+  if (!cart.length) return;
+  var lines = cart.map(function(i){ return '- '+i.nom+' x'+i.qty+' = '+fmt(i.prix*i.qty); }).join('\n');
+  alert('Commande reçue !\n\n'+lines+'\n\nTotal : '+fmt(cartTotal())+'\n\nNous vous contacterons sous 24h.');
+  closeCart();
+}
+function orderWA() {
+  if (!cart.length) return;
+  var lines = cart.map(function(i){ return encodeURIComponent('• '+i.nom+' x'+i.qty); }).join('%0A');
+  var msg = 'Bonjour%20Cabinet%20Wa%20Kana%20Hakane%2C%20commande%20:%0A'+lines+'%0ATotal%20:%20'+cartTotal().toLocaleString('fr-FR')+'%20F%20CFA';
+  window.open('https://wa.me/221770444588?text='+msg,'_blank');
+}
+
+/* ─── TOAST ─── */
+function toast(title, text, icon, type) {
+  var c = document.getElementById('toasts');
+  if (!c) return;
+  var el = document.createElement('div');
+  el.className = 'toast'+(type?' '+type:'');
+  el.innerHTML = '<span class="ti">'+(icon||'✅')+'</span><div class="tt"><strong>'+title+'</strong><span>'+text+'</span></div>';
+  c.appendChild(el);
+  setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 3400);
+}
+
+/* ─── PAGINATION ─── */
+var PAG = 3, curPage = 1;
+
+function buildCards() {
+  var grid = document.getElementById('prod-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  PRODUITS.forEach(function(p, i) {
+    var card = document.createElement('div');
+    card.className = 'prod-card';
+    card.id = 'pc-'+p.id;
+    var tagsHTML = p.tags.map(function(t){ return '<span class="tag">'+t+'</span>'; }).join('');
+    var badgeHTML = p.badge ? '<div class="prod-badge">'+p.badge+'</div>' : '';
+    var pf = p.prix.toLocaleString('fr-FR');
+    card.innerHTML =
+      badgeHTML+
+      '<div class="prod-img-box">'+
+        '<div class="prod-emoji">'+p.emoji+'</div>'+
+      '</div>'+
+      '<div class="prod-body">'+
+        '<span class="prod-cat">'+p.cat+'</span>'+
+        '<h3 class="prod-name">'+p.nom+'</h3>'+
+        '<p class="prod-desc">'+p.desc+'</p>'+
+        '<div class="prod-tags">'+tagsHTML+'</div>'+
+        '<div class="prod-foot">'+
+          '<span class="prod-price"><sup>F</sup> '+pf+'</span>'+
+          '<button class="btn-add" onclick="addToCart('+p.id+')">'+
+            '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>'+
+            'Ajouter'+
+          '</button>'+
+        '</div>'+
+        '<div class="prod-bio">Produit 100% naturel certifié</div>'+
+      '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function showPage(page) {
+  curPage = page;
+  var total = Math.ceil(PRODUITS.length / PAG);
+  PRODUITS.forEach(function(p, i) {
+    var card = document.getElementById('pc-'+p.id);
+    if (!card) return;
+    var show = (i >= (page-1)*PAG && i < page*PAG);
+    card.style.display = show ? 'flex' : 'none';
+    if (show) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      var delay = (i - (page-1)*PAG) * 100;
+      setTimeout((function(el){
+        return function(){
+          el.style.transition = 'opacity .5s ease, transform .5s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        };
+      })(card), delay);
+    }
+  });
+  renderPagNav(page, total);
+}
+
+function renderPagNav(page, total) {
+  var prev = document.getElementById('pag-prev');
+  var next = document.getElementById('pag-next');
+  var nums = document.getElementById('pag-nums');
+  if (prev) prev.disabled = (page === 1);
+  if (next) next.disabled = (page === total);
+  if (!nums) return;
+  nums.innerHTML = '';
+  for (var p = 1; p <= total; p++) {
+    (function(n){
+      var b = document.createElement('button');
+      b.className = 'pag-n' + (n === page ? ' act' : '');
+      b.textContent = n;
+      b.onclick = function(){
+        showPage(n);
+        var s = document.getElementById('boutique');
+        if (s) s.scrollIntoView({behavior:'smooth',block:'start'});
+      };
+      nums.appendChild(b);
+    })(p);
+  }
+}
+
+function pagChange(d) {
+  var total = Math.ceil(PRODUITS.length / PAG);
+  showPage(Math.max(1, Math.min(total, curPage + d)));
+  var s = document.getElementById('boutique');
+  if (s) s.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ─── FORMULAIRE ─── */
+function initForm() {
+  var form = document.getElementById('form');
+  if (!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    function v(fid, eid, fn) {
+      var el = document.getElementById(fid);
+      var er = document.getElementById(eid);
+      if (!el) return;
+      var valid = fn(el.value);
+      el.classList.toggle('err', !valid);
+      el.classList.toggle('ok', valid);
+      if (er) er.classList.toggle('show', !valid);
+      if (!valid) ok = false;
+    }
+    v('f-prenom','e-prenom', function(x){ return x.trim().length >= 2; });
+    v('f-nom',   'e-nom',    function(x){ return x.trim().length >= 2; });
+    v('f-email', 'e-email',  function(x){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x); });
+    v('f-sujet', 'e-sujet',  function(x){ return x !== ''; });
+    v('f-msg',   'e-msg',    function(x){ return x.trim().length >= 10; });
+    if (!ok) return;
+    var btn = document.getElementById('btn-send');
+    if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours...'; }
+    setTimeout(function(){
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Envoyer le message';
+      }
+      form.reset();
+      document.querySelectorAll('.fc').forEach(function(el){ el.classList.remove('ok','err'); });
+      toast('Message envoyé !', 'Réponse sous 24h.', '✉️', 'info');
+    }, 1800);
+  });
+}
+
+/* ─── NAVBAR + PROGRESS ─── */
+function initScroll() {
+  window.addEventListener('scroll', function(){
+    var nav = document.getElementById('nav');
+    var bar = document.getElementById('prog');
+    var h   = document.documentElement;
+    if (bar) bar.style.width = (window.scrollY / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    if (nav) nav.classList[window.scrollY > 55 ? 'add' : 'remove']('on');
+  });
+}
+
+/* ─── REVEAL AU SCROLL ─── */
+function initReveal() {
+  var els = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          en.target.classList.add('done');
+          obs.unobserve(en.target);
+        }
+      });
+    }, {threshold: 0.08, rootMargin: '0px 0px -30px 0px'});
+    els.forEach(function(el){ obs.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('done'); });
+  }
+  // Fallback sécurité
+  setTimeout(function(){
+    document.querySelectorAll('.rv:not(.done)').forEach(function(el){ el.classList.add('done'); });
+  }, 2000);
+}
+
+/* ─── MENU MOBILE ─── */
+function initMob() {
+  var hbg = document.getElementById('hbg');
+  var mm  = document.getElementById('mob-menu');
+  var mc  = document.getElementById('mob-close');
+  if (hbg) hbg.addEventListener('click', function(){ if (mm) mm.classList.add('open'); });
+  if (mc)  mc.addEventListener('click',  function(){ if (mm) mm.classList.remove('open'); });
+}
+function closeMob() {
+  var mm = document.getElementById('mob-menu');
+  if (mm) mm.classList.remove('open');
+}
+
+/* ─── WA LABEL DISPARAIT ─── */
+setTimeout(function(){
+  var l = document.getElementById('wa-lbl');
+  if (l) l.style.display = 'none';
+}, 5500);
+
+/* ─── INIT GLOBAL ─── */
+window.addEventListener('DOMContentLoaded', function(){
+  buildCards();   // construire les fiches produit
+  showPage(1);    // afficher page 1
+  renderCart();   // initialiser panier
+  initForm();
+  initScroll();
+  initReveal();
+  initMob();
+});
+</script>
+
+</body>
+</html>
